@@ -15,7 +15,7 @@ file=open(name,'r')
 while name!='s':
 	file=open(name,'r')
 	words+=file.readlines()
-	file=codecs.open(name+'_cp','r',encoding='utf-8')
+	file=codecs.open(name+'_p','r',encoding='utf-8')
 	problem+=file.readlines()
 	name=input('输入文件名(s for end):')
 length=len(words)
