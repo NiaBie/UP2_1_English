@@ -58,6 +58,7 @@ for i in range(length):
   k=0
   temp=len(words[i])-1
   str=''
+  total_score *= 2
   while not(str==words[i] or str=='s\n'):
     total_score = int(total_score/2)
     str=input(problem[i])+'\n'
@@ -68,8 +69,9 @@ for i in range(length):
       for l in range(k):
         print(words[i][l],end='')
       print()
-  total_score += 100
+  total_score = total_score + 100
   print('next!')
 end_time = time.localtime()
 end_score = (end_time[3]*60 + end_time[4])*60 + end_time[5]
+# end_score = start_score
 print("score:%d" % (total_score - end_score + start_score))

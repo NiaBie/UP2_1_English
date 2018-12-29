@@ -59,6 +59,7 @@ for i in range(length):
   k=0
   temp=len(words[i])-1
   str=''
+  total_score *= 2
   while not(str==words[i] or str=='s\n'):
     total_score = int(total_score/2)
     str=input(problem[i])+'\n'
