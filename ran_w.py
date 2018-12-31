@@ -37,12 +37,13 @@ exchange(words, problem)
 head = 0
 tail = length - 1
 print('total words:',length)
+print("\033[34;1mS is for skip!\033[0m")
 while head < length:
   j = random.randint(head, tail)
   k = 0
   temp=len(words[j])-1
   str=input(problem[j])+'\n'
-  if not(str==words[j] or str=='s\n'):
+  if not(str==words[j] or str=='S\n'):
     wrong_time[j] += 1
     if k<temp:
       #k+=1
@@ -64,4 +65,4 @@ while head < length:
     print('next!')
 for i in range(length):
   if wrong_time[i] != 0:
-    print("\033[32m%s\033[34m%-20s\033[31m%10d\033[0m" % (problem[i], words[i][:(len(words[i]) - 1)], wrong_time[i]))
+    print("\033[32m%s\033[34;1m%-20s\033[31;1m%10d\033[0m" % (problem[i], words[i][:(len(words[i]) - 1)], wrong_time[i]))
