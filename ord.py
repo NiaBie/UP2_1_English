@@ -1,4 +1,5 @@
-import functools,sys,logging,random,codecs,os
+# single in order
+import functools,sys,logging,random,codecs
 from collections import Iterable,Iterator
 from types import MethodType,FunctionType
 from enum import Enum
@@ -10,24 +11,16 @@ def array(row,line=0,num=0):
 
 words=[]
 problem=[]
-suffix = input('problem suffix:')
-num_start=int(input('start file ord:'))
-num_end=int(input('end file ord:'))
-while num_start <= num_end:
-  num_part = 1
-  name = ("%d_%d" % (num_start, num_part))
-  # print(name)
-  while (os.access(name, os.F_OK) == True):
-    print("add %s" % name)
-    file=open(name,'r')
-    words+=file.readlines()
-    file=codecs.open(name+suffix,'r',encoding='utf-8')
-    problem+=file.readlines()
-    num_part += 1
-    name = ("%d_%d" % (num_start, num_part))
-  num_start += 1
+name=input('输入文件名(s for end):')
+file=open(name,'r')
+while name!='s':
+  file=open(name,'r')
+  words+=file.readlines()
+  file=codecs.open(name+'_p','r',encoding='utf-8')
+  problem+=file.readlines()
+  name=input('输入文件名(s for end):')
 length=len(words)
-print('total words:',length)
+print('总单词数为:',length)
 for i in range(length):
   k=0
   temp=len(words[i])-1

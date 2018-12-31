@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*- 
+# single in rand, display wrongtimes
 import functools,sys,logging,random,codecs,time
 from collections import Iterable,Iterator
 
@@ -9,7 +9,6 @@ def array(row,line=0,num=0):
 
 def exchange(words, problem):
   len_t = len(words) - 1
-  print(len_t)
   for i in range(1000):
     u = random.randint(0, len_t)
     v = random.randint(0, len_t)
@@ -36,10 +35,10 @@ while name!='s':
   file=codecs.open(name+'_p','r',encoding='utf-8')
   problem+=file.readlines()
   name=input('输入文件名(s for end):')
-length=len(words)
-print('总单词数为:',length)
-times=length*4
-print('一共%d次'%(times))
+length = len(words)
+wrong_time = words[:]
+for i in range(length):
+  wrong_time[i] = 0
 #times=input('输入次数:')
 #times=int(times)
 #head=input('输入开始(1开始):')
@@ -47,20 +46,20 @@ print('一共%d次'%(times))
 #head=int(head)
 #tail=int(tail)
 exchange(words, problem)
-head=1
-tail=length
-print('总单词数为:',length)
+head = 1
+tail = length
+print('total words:',length)
 # tm_year, tm_mon, tm_mday, tm_hour, tm_min, tm_sec
 total_score = 0
 start_time = time.localtime()
 start_score = (start_time[3]*60 + start_time[4])*60 + start_time[5]
 for i in range(length):
-  k=0
+  k = 0
   temp=len(words[i])-1
   str=''
-  total_score *= 2
+  wrong_time[i] -= 1
   while not(str==words[i] or str=='s\n'):
-    total_score = int(total_score/2)
+    wrong_time[i] += 1
     str=input(problem[i])+'\n'
     if k<temp:
       #k+=1
@@ -73,5 +72,6 @@ for i in range(length):
   print('next!')
 end_time = time.localtime()
 end_score = (end_time[3]*60 + end_time[4])*60 + end_time[5]
-# end_score = start_score
-print("score:%d" % (total_score - end_score + start_score))
+for i in range(length):
+  if wrong_time[i] != 0:
+    print("%s:%d" % (words[i][:len(words[i]) - 1], wrong_time[i]))
