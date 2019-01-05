@@ -57,8 +57,23 @@ while head < length:
         print(words[j][l],end='')
       print()
       str=input(problem[j])+'\n'
-    print('next-')
-    num_last = j
+    if (str == 'S\n'):
+      print("\033[32m%s\033[0m" % (words[j][:(len(words[j]) - 1)]))
+      temp = words[j]
+      words[j] = words[head]
+      words[head] = temp
+      temp = problem[j]
+      problem[j] = problem[head]
+      problem[head] = temp
+      temp = wrong_time[j]
+      wrong_time[j] = wrong_time[head]
+      wrong_time[head] = temp
+      head += 1
+      print('next!')
+      num_last = -1
+    else:
+      print('next-')
+      num_last = j
   else:
     temp = words[j]
     words[j] = words[head]

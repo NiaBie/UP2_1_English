@@ -66,6 +66,7 @@ while head < length:
       print()
       str=input(problem[j])+'\n'
     if (str == 'S\n'):
+      print("\033[32m%s\033[0m" % (words[j][:(len(words[j]) - 1)]))
       temp = words[j]
       words[j] = words[head]
       words[head] = temp
@@ -94,7 +95,6 @@ while head < length:
     head += 1
     print('next!')
     num_last = -1
-  print("\033[32m%s\033[0m" % (words[j][:(len(words[j]) - 1)]))
 # display
 for i in range(length):
   if wrong_time[i] != 0:
