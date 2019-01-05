@@ -19,16 +19,16 @@ def exchange(words, problem):
     problem[u] = problem[v]
     problem[v] = words_t
 
-words=[]
-problem=[]
-name=input('输入文件名(s for end):')
-file=open(name,'r')
-while name!='s':
-  file=open(name,'r')
-  words+=file.readlines()
-  file=codecs.open(name+'_p','r',encoding='utf-8')
-  problem+=file.readlines()
-  name=input('输入文件名(s for end):')
+words = []
+problem = []
+name = []
+name=input('file name(s for end):')
+while name != 's':
+  file = open(name,'r')
+  words += file.readlines()
+  file = codecs.open(name+'_p', 'r', encoding='utf-8')
+  problem += file.readlines()
+  name = input('file name(s for end):')
 length = len(words)
 wrong_time = words[:]
 for i in range(length):
@@ -36,10 +36,14 @@ for i in range(length):
 exchange(words, problem)
 head = 0
 tail = length - 1
+num_last = -1
 print('total words:',length)
 print("\033[34;1mS is for skip!\033[0m")
+# test
 while head < length:
   j = random.randint(head, tail)
+  if (j == num_last):
+    j = random.randint(head, tail)
   k = 0
   temp=len(words[j])-1
   str=input(problem[j])+'\n'
@@ -54,6 +58,7 @@ while head < length:
       print()
       str=input(problem[j])+'\n'
     print('next-')
+    num_last = j
   else:
     temp = words[j]
     words[j] = words[head]
@@ -66,6 +71,7 @@ while head < length:
     wrong_time[head] = temp
     head += 1
     print('next!')
+    num_last = -1
 # display
 for i in range(length):
   if wrong_time[i] != 0:
