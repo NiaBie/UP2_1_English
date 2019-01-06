@@ -75,6 +75,7 @@ while head < length:
       print('next-')
       num_last = j
   else:
+    print("\033[32m%s\033[0m" % (words[j][:(len(words[j]) - 1)]))
     temp = words[j]
     words[j] = words[head]
     words[head] = temp
